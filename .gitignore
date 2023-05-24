@@ -11,4 +11,5 @@ bin/*
 # General
 logs/*
 !logs/.gdignore
-old/
+old/*
+!old/.gdignore
