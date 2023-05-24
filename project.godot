@@ -14,3 +14,7 @@ config/name="my-hxgodot-game"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/icon.png"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.607843, 0.701961, 0.996078, 1)

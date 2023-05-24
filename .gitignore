@@ -9,4 +9,6 @@ bin/*
 *.dblite
 
 # General
-logs/
+logs/*
+!logs/.gdignore
+old/
