@@ -9,4 +9,14 @@ class GbeMain extends Node2D {
 
         trace("GbeMain._ready()");
     }
+
+    @:export
+    public function onMobTimer() {
+        trace("GbeMain.onMobTimer()");
+    }
+    @:export
+    public function onPlayerFire() {
+        trace("GbeMain.onPlayerFire()");
+        // player.onPlayerFire();
+    }
 }
