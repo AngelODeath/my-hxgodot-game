@@ -1,3 +1,15 @@
 [gd_scene format=3 uid="uid://bxusoeppybqut"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="GbeMain"]
+
+[node name="GbeCursor" type="GbeCursor" parent="."]
+
+[node name="GbeMonsters" type="GbeMonsters" parent="."]
+
+[node name="GbePlayer" type="GbePlayer" parent="."]
+
+[node name="GbeBullets" type="GbeBullets" parent="."]
+
+[node name="GbeScore" type="GbeScore" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

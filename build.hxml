@@ -5,4 +5,4 @@
 -main HxGodot
 -cp src
 # force include our gamecode into the extension
---macro include('example', true)
+--macro include('hx', true)
