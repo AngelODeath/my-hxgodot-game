@@ -3,7 +3,6 @@ package hx;
 import godot.*;
 
 class GbePlayer extends CharacterBody2D {
-    @:export
     public function new() {
         super();
         trace("new GbePlayer()");
