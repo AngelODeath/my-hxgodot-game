@@ -2,14 +2,14 @@
 
 [node name="Main" type="GbeMain"]
 
-[node name="GbeCursor" type="GbeCursor" parent="."]
+[node name="Cursor" type="GbeCursor" parent="."]
 
-[node name="GbeMonsters" type="GbeMonsters" parent="."]
+[node name="Monsters" type="GbeMonsters" parent="."]
 
-[node name="GbePlayer" type="GbePlayer" parent="."]
+[node name="Player" type="GbePlayer" parent="."]
 
-[node name="GbeBullets" type="GbeBullets" parent="."]
+[node name="Bullets" type="GbeBullets" parent="."]
 
-[node name="GbeScore" type="GbeScore" parent="."]
+[node name="Score" type="GbeScore" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
