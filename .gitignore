@@ -13,3 +13,5 @@ logs/*
 !logs/.gdignore
 old/*
 !old/.gdignore
+
+.vscode
