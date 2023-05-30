@@ -1,4 +1,33 @@
-[gd_scene format=3 uid="uid://bxusoeppybqut"]
+[gd_scene load_steps=5 format=3 uid="uid://bxusoeppybqut"]
+
+[ext_resource type="Texture2D" uid="uid://bewis8pb2ojan" path="res://assets/sprites/police/Walk1.png" id="1_lew4w"]
+[ext_resource type="Texture2D" uid="uid://btdqfgaesxrm4" path="res://assets/sprites/Particle.png" id="2_ot574"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayq1g"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_io1d6"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 142.71
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 
 [node name="Main" type="GbeMain"]
 
@@ -7,9 +36,36 @@
 [node name="Monsters" type="GbeMonsters" parent="."]
 
 [node name="Player" type="GbePlayer" parent="."]
+position = Vector2(457, 187)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_lew4w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+position = Vector2(-123, -77)
+polygon = PackedVector2Array(103, 151, 117, 151, 177, 75, 117, 4, 101, 4, 68, 75)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_ayq1g")
+animation = &"fire"
 
 [node name="Bullets" type="GbeBullets" parent="."]
+position = Vector2(266, 257)
 
 [node name="Score" type="GbeScore" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 142.0
+offset_top = 98.0
+offset_right = 182.0
+offset_bottom = 121.0
+
+[node name="Particles" type="GbeParticles" parent="."]
+position = Vector2(351, 417)
+process_material = SubResource("ParticleProcessMaterial_io1d6")
+texture = ExtResource("2_ot574")
+lifetime = 2.0
+speed_scale = 0.25
+explosiveness = 0.5
+randomness = 0.25
+fixed_fps = 60
+draw_order = 0
+trail_enabled = true
