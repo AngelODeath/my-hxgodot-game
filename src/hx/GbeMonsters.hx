@@ -14,14 +14,14 @@ class GbeMonsters extends Node2D {
     override function _process(_delta:Float):Void {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbeMonsters._process()");
+        // trace("GbeMonsters._process()");
         // this.queue_redraw();
     }
     @:export
     override function _physics_process(_delta:Float):Void {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbeMonsters._physics_process()");
+        // trace("GbeMonsters._physics_process()");
     }
     @:export
     override function _draw() {
