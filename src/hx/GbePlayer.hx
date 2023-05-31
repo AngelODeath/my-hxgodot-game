@@ -21,7 +21,7 @@ class GbePlayer extends CharacterBody2D {
 
     public function new() {
         super();
-        trace("new GbePlayer()");
+        // trace("new GbePlayer()");
         onHit = Signal.fromObjectSignal(this, "onHit");
         onFire = Signal.fromObjectSignal(this, "onFire");
     }
@@ -30,46 +30,52 @@ class GbePlayer extends CharacterBody2D {
     override function _ready() {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbePlayer._ready()");
-        animationPlayer = this.get_node("AnimatedSprite2D").as(AnimatedSprite2D);
+        // trace("GbePlayer._ready()");
+        animationPlayer = get_node("AnimatedSprite2D").as(AnimatedSprite2D);
     }
 
     @:export
-    override function _physics_process(_delta:Float) {
+    override function _input(_event: InputEvent) {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbePlayer._physics_process()");
+        // trace('GbePlayer._input(${_event.as_text()})');
+    }
+
+    @:export
+    override function _physics_process(_delta: Float) {
+        if (Engine.singleton().is_editor_hint())
+            return;
+        // trace("GbePlayer._physics_process()");
 
         // Already normalized
         var input_vector = Input.singleton().get_vector(MoveLeft, MoveRight, MoveUp, MoveDown);
         
         // Calculate player position based on speed
         var velocity = speed * input_vector * _delta;
-        var position = this.get_position();
+        var position = get_position();
         position += velocity;
-        this.set_position(position);
+        set_position(position);
         
         // Calculate player direction based on mouse cursor
         var direction = getMouseDirection();
         var angleRad = Math.atan2(direction.y, direction.x);
         var angleDeg = angleRad * 180 / Math.PI;
-        this.rotation_degrees = angleDeg;
+        rotation_degrees = angleDeg;
 
         var currentTime = cast(Time.singleton().get_ticks_msec(), Float) / 1000.0;
-        if (Input.singleton().is_action_just_pressed(PrimaryFire)) {
+        if (Input.singleton().is_action_pressed(PrimaryFire)) {
             if (currentTime >= fireTimer+fireRate) {
                 fireTimer = currentTime;
-                this.emit_signal("onFire");
+                emit_signal("onFire");
             }
-            animationPlayer.play("shoot");
-        }
-        // } else if (velocity.length() > 0)
-        //     animationPlayer.play("walk");
-        // else
-        //     animationPlayer.play("base");
+            animationPlayer.play("fire");
+        } else if (velocity.length() > 0)
+            animationPlayer.play("walk");
+        else
+            animationPlayer.play("stand");
         
         //Todo: handle collisions
-        // var collision = this.move_and_collide(velocity * _delta);
+        // var collision = move_and_collide(velocity * _delta);
         // trace(collision);
 
     }
@@ -78,9 +84,9 @@ class GbePlayer extends CharacterBody2D {
     function getMouseDirection(): Vector2 {
         if (Engine.singleton().is_editor_hint())
             return new Vector2(0,0);
-        trace("GbePlayer.getMouseDirection()");
-        var mousePos = this.get_global_mouse_position();
-        var playerPos = this.global_position;
+        // trace("GbePlayer.getMouseDirection()");
+        var mousePos = get_global_mouse_position();
+        var playerPos = global_position;
         var direction = mousePos - playerPos;
         direction.normalize();
         return direction;
