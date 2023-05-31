@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxgoxedsfwj2v"]
+
+[ext_resource type="Texture2D" uid="uid://dyi02u73p0bw5" path="res://assets/sprites/police/PoliceAK.png" id="1_avy4y"]
+[ext_resource type="Texture2D" uid="uid://khfvi03ovxrg" path="res://assets/sprites/police/PoliceAK2.png" id="2_46gdm"]
+[ext_resource type="Texture2D" uid="uid://bewis8pb2ojan" path="res://assets/sprites/police/Walk1.png" id="3_v326s"]
+[ext_resource type="Texture2D" uid="uid://chl286hh6q1k7" path="res://assets/sprites/police/Walk3.png" id="4_0s4k6"]
+[ext_resource type="Texture2D" uid="uid://ctpfne8opupbu" path="res://assets/sprites/police/Walk2.png" id="5_ehvod"]
+[ext_resource type="Texture2D" uid="uid://b5vht7wfgrefx" path="res://assets/sprites/police/Walk4.png" id="6_qcue3"]
+[ext_resource type="Texture2D" uid="uid://j1db53dgsnv" path="res://assets/sprites/police/Walk6.png" id="7_y2bry"]
+[ext_resource type="Texture2D" uid="uid://b16i7bxj0vp58" path="res://assets/sprites/police/Walk5.png" id="8_pllri"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lnliq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_avy4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_46gdm")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v326s")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v326s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0s4k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ehvod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qcue3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y2bry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pllri")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="GbePlayer"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, 0)
+sprite_frames = SubResource("SpriteFrames_lnliq")
+animation = &"walk"
+frame = 2
+frame_progress = 0.329457
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-123, -77)
+polygon = PackedVector2Array(103, 151, 117, 151, 177, 75, 117, 4, 101, 4, 68, 75)
