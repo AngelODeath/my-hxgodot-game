@@ -8,7 +8,7 @@ class GbeMonsters extends Node2D {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
 
-        trace("GbeMonsters._ready()");
+        // trace("GbeMonsters._ready()");
     }
     @:export
     override function _process(_delta:Float):Void {
@@ -27,7 +27,7 @@ class GbeMonsters extends Node2D {
     override function _draw() {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbeMonsters._draw()");
+        // trace("GbeMonsters._draw()");
     }
     @:export
     public function addMonster(_speed:Float, _direction:Vector2, _texture:Texture, _player_position:Vector2) {

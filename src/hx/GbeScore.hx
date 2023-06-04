@@ -10,7 +10,7 @@ class GbeScore extends Label {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
 
-        trace("GbeScore._ready()");
+        // trace("GbeScore._ready()");
     }
     @:export
     public function setScore(_score:Int) {

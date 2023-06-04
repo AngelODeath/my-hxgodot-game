@@ -2,10 +2,11 @@ package hx;
 
 import godot.*;
 import godot.variant.*;
+// import hx.*;
 
 class GbePlayer extends CharacterBody2D {
-    public var onHit:TypedSignal<()->Void>;
-    public var onFire:TypedSignal<()->Void>;
+    @:export public var onHit:TypedSignal<()->Void>;
+    @:export public var onFire:TypedSignal<(direction: Vector2, location: Vector2)->Void>;
 
     var MoveRight:StringName = "right";
     var MoveLeft:StringName = "left";
@@ -18,10 +19,9 @@ class GbePlayer extends CharacterBody2D {
     var fireTimer:Float = -0.5;
     var fireRate:Float = 0.5;
 
-
     public function new() {
         super();
-        // trace("new GbePlayer()");
+        trace("new GbePlayer()");
         onHit = Signal.fromObjectSignal(this, "onHit");
         onFire = Signal.fromObjectSignal(this, "onFire");
     }
@@ -30,7 +30,7 @@ class GbePlayer extends CharacterBody2D {
     override function _ready() {
         if (Engine.singleton().is_editor_hint())
             return;
-        // trace("GbePlayer._ready()");
+        trace("GbePlayer._ready()");
         animationPlayer = get_node("AnimatedSprite2D").as(AnimatedSprite2D);
     }
 
@@ -38,19 +38,19 @@ class GbePlayer extends CharacterBody2D {
     override function _input(_event: InputEvent) {
         if (Engine.singleton().is_editor_hint())
             return;
-        // trace('GbePlayer._input(${_event.as_text()})');
+        trace('GbePlayer._input(${_event.as_text()})');
     }
 
     @:export
     override function _physics_process(_delta: Float) {
         if (Engine.singleton().is_editor_hint())
             return;
-        // trace("GbePlayer._physics_process()");
+        trace("GbePlayer._physics_process()");
 
         // Already normalized
         var input_vector = Input.singleton().get_vector(MoveLeft, MoveRight, MoveUp, MoveDown);
         
-        // Calculate player position based on speed
+        // Calculate player position based on velocity and framerate
         var velocity = speed * input_vector * _delta;
         var position = get_position();
         position += velocity;
@@ -66,6 +66,7 @@ class GbePlayer extends CharacterBody2D {
         if (Input.singleton().is_action_pressed(PrimaryFire)) {
             if (currentTime >= fireTimer+fireRate) {
                 fireTimer = currentTime;
+                // fireBullet();
                 emit_signal("onFire");
             }
             animationPlayer.play("fire");
@@ -84,7 +85,7 @@ class GbePlayer extends CharacterBody2D {
     function getMouseDirection(): Vector2 {
         if (Engine.singleton().is_editor_hint())
             return new Vector2(0,0);
-        // trace("GbePlayer.getMouseDirection()");
+        trace("GbePlayer.getMouseDirection()");
         var mousePos = get_global_mouse_position();
         var playerPos = global_position;
         var direction = mousePos - playerPos;
@@ -97,5 +98,13 @@ class GbePlayer extends CharacterBody2D {
         if (Engine.singleton().is_editor_hint())
             return;
         trace("GbePlayer.fireBullet()");
+        // var direction = getMouseDirection();
+        // var player_position = get_position();
+
+        // trace("GbePlayer.fireBullet()");
+        // trace('- And this is a direction: ${direction}');
+        // trace('- This is a player_position: ${player_position}');
+        
+        // onFire.emit(direction, player_position);
     }
 }
