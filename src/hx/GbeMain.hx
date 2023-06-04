@@ -6,8 +6,11 @@ import hx.*;
 
 class GbeMain extends Node {
     public var player:GbePlayer;
-    // public var bullet:PackedScene;
-    // public var bullets:GbeBullets;
+    public var bullet:PackedScene;
+    public var bullets:GbeBullets;
+
+    public var fire_sound_player: AudioStreamPlayer;
+    public var background_music_player: AudioStreamPlayer;
 
     override function _ready() {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
@@ -18,6 +21,11 @@ class GbeMain extends Node {
         player.onHit.connect(Callable.fromObjectMethod(this, "onPlayerHit"), 0);
         player.onFire.connect(Callable.fromObjectMethod(this, "onPlayerFire"), 0);
         trace('$player signals connected');
+
+        fire_sound_player = get_node('PlayerFireSound').as(AudioStreamPlayer);
+        background_music_player = get_node('BackgroundMusic').as(AudioStreamPlayer);
+        background_music_player.play();
+
         // get_tree().set_auto_accept_quit(true);
 
         // bullet = ResourceLoader.singleton().load("res://scenes/bullet1.tscn", "", 1).as(PackedScene);
@@ -71,6 +79,7 @@ class GbeMain extends Node {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
         trace("GbeMain.onPlayerFire()");
+        fire_sound_player.play();
         player.fireBullet();
         
         // trace("GbeMain.onPlayerFire()");

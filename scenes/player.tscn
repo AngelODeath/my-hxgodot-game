@@ -51,7 +51,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Player" type="GbePlayer"]
@@ -61,7 +61,7 @@ position = Vector2(29, 0)
 sprite_frames = SubResource("SpriteFrames_lnliq")
 animation = &"walk"
 frame = 2
-frame_progress = 0.329457
+frame_progress = 0.998429
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-123, -77)

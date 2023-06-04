@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxusoeppybqut"]
+[gd_scene load_steps=8 format=3 uid="uid://bxusoeppybqut"]
 
+[ext_resource type="PackedScene" uid="uid://dtro81mc7xmd2" path="res://scenes/level1.tscn" id="1_phaa0"]
 [ext_resource type="PackedScene" uid="uid://dxgoxedsfwj2v" path="res://scenes/player.tscn" id="2_mo3wl"]
 [ext_resource type="Texture2D" uid="uid://btdqfgaesxrm4" path="res://assets/sprites/Particle.png" id="2_ot574"]
+[ext_resource type="AudioStream" uid="uid://cn72ccyxkjdod" path="res://assets/8bit_gunloop_explosion.wav" id="3_qphl6"]
+[ext_resource type="AudioStream" uid="uid://0kkagd8tmc5l" path="res://assets/steel_commander.wav" id="4_rsk8g"]
+[ext_resource type="PackedScene" uid="uid://mw3dt8vnkj0k" path="res://scenes/shopkeeper.tscn" id="5_8nry2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_io1d6"]
 particle_flag_disable_z = true
@@ -12,6 +16,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 
 [node name="Main" type="GbeMain"]
+
+[node name="Level1" parent="." instance=ExtResource("1_phaa0")]
 
 [node name="Cursor" type="GbeCursor" parent="."]
 
@@ -40,3 +46,18 @@ trail_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_mo3wl")]
 position = Vector2(69, 134)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Shopkeeper" parent="." instance=ExtResource("5_8nry2")]
+position = Vector2(1000, 1000)
+
+[node name="PlayerFireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qphl6")
+volume_db = -20.0
+bus = &"GameMaster"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rsk8g")
+volume_db = -20.0
+bus = &"GameMaster"

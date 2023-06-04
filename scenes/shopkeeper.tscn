@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://mw3dt8vnkj0k"]
+
+[ext_resource type="Texture2D" uid="uid://l26each1pi7j" path="res://assets/sprites/citizens/Walk1Civ3.png" id="1_q3vfq"]
+[ext_resource type="Texture2D" uid="uid://cmnlkfxjp6jf1" path="res://assets/sprites/citizens/Walk2Civ3.png" id="2_vfok2"]
+[ext_resource type="Texture2D" uid="uid://w0d7u3ipludc" path="res://assets/sprites/citizens/Walk3Civ3.png" id="3_5lksa"]
+[ext_resource type="Texture2D" uid="uid://dhslg7dxgyf6i" path="res://assets/sprites/citizens/Walk4Civ3.png" id="4_bgktq"]
+[ext_resource type="Texture2D" uid="uid://c5loclel6q4ps" path="res://assets/sprites/citizens/Walk5Civ3.png" id="5_eyclb"]
+[ext_resource type="Texture2D" uid="uid://bjpwfaj50v4n1" path="res://assets/sprites/citizens/Walk6Civ3.png" id="6_1mbi7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1msoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3vfq")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3vfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vfok2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5lksa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bgktq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eyclb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1mbi7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Shopkeeper" type="GbeShopkeeper"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1msoj")
+animation = &"walk"
+frame_progress = 0.229506
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-29, -31, -9, -73, 9, -74, 54, -1, 7, 74, -5, 74, -27, 29, -55, 29, -54, -30)

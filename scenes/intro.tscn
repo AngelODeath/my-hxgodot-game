@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhno7stmfyp2f"]
+
+[ext_resource type="Texture2D" uid="uid://d32k5rqu80ikx" path="res://assets/background0.png" id="1_1lv06"]
+[ext_resource type="Texture2D" uid="uid://dmlclqc715sps" path="res://assets/logo.png" id="2_um7w5"]
+[ext_resource type="FontFile" uid="uid://wfbfyhi43kvb" path="res://assets/fonts/noto-sans/NotoSans-Black.ttf" id="3_k2r6v"]
+
+[sub_resource type="Theme" id="Theme_72d6e"]
+default_font_size = 90
+
+[node name="Intro" type="GbeIntro"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_1lv06")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(962, 468)
+texture = ExtResource("2_um7w5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 511.0
+offset_top = 637.0
+offset_right = 1502.0
+offset_bottom = 905.0
+theme = SubResource("Theme_72d6e")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.596078, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("3_k2r6v")
+text = "Isolation Games (Inc)
+...prodly presents..."
+horizontal_alignment = 1
+
+[node name="SceneTransitionTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

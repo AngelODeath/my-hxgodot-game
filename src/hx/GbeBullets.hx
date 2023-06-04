@@ -5,19 +5,19 @@ import godot.variant.*;
 // import hx.*;
 
 class GbeBullets extends Node2D {
-    // @:export public var bullets:Array<GbeBullet>;
-    // @:export public var bullet_texture:Texture2D;
+    @:export public var bullets:Array<GbeBullet>;
+    @:export public var bullet_texture:Texture2D;
 
-    // @:export public var shape:RID;
+    @:export public var shape:RID;
 
     override function _ready() {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
 
         trace("GbeBullets._ready()");
-        // shape = PhysicsServer2D.singleton().circle_shape_create();
-        // PhysicsServer2D.singleton().shape_set_data(shape, 8);
-        // bullets = [];
+        shape = PhysicsServer2D.singleton().circle_shape_create();
+        PhysicsServer2D.singleton().shape_set_data(shape, 8);
+        bullets = [];
         // bullet_texture = null;
     }
     @:export
@@ -38,26 +38,27 @@ class GbeBullets extends Node2D {
         if (Engine.singleton().is_editor_hint())
             return;
         trace("GbeBullets._draw()");
-        // for (bullet in bullets) {
+        for (bullet in bullets) {
+            trace('draw bullet');
         //     this.draw_set_transform(bullet.position,bullet.rotation,new Vector2(bullet.speed,bullet.speed));
         //     this.draw_texture(bullet.texture, new Vector2(0,0), Color.SILVER);
-        // }
+        }
     }
-    // @:export
-    // public function set_texture(texture: Texture2D) {
-    //     if (Engine.singleton().is_editor_hint())
-    //         return;
-    //     trace('GbeBullets.set_texture($texture)');
-    //     // bullet_texture = texture;
 
-    // }
     @:export
-    public function addBullet(_speed:Float, _direction:Vector2, _texture:Texture, _player_position:Vector2) {
-    // public function addBullet(_bullet: GbeBullet, texture) {
+    public function set_texture(texture: Texture2D) {
         if (Engine.singleton().is_editor_hint())
             return;
-        trace("GbeBullets.addBullet()");
-        // trace('GbeBullets.add_bullet($_bullet)');
+        trace('GbeBullets.set_texture($texture)');
+        bullet_texture = texture;
+    }
+
+    @:export
+    // public function addBullet(_speed:Float, _direction:Vector2, _texture:Texture, _player_position:Vector2) {
+    public function addBullet(_bullet: GbeBullet) {
+        if (Engine.singleton().is_editor_hint())
+            return;
+        trace('GbeBullets.addBullet($_bullet)');
 
 
         // bullets.push(_bullet);
